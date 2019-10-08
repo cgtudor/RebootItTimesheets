@@ -19,18 +19,23 @@ namespace RebootIT.TimesheetApp.Controllers
         }
 
         // GET: Timesheet
-        public async Task<IActionResult> Index(int? id)
+        public async Task<IActionResult> Index()
         {
-            var timesheetDbContext = id == null ? _context.Timesheets.Include(t => t.Client).Include(t => t.Location).Include(t => t.Staff) :
-                    _context.Timesheets.Include(t => t.Client).Include(t => t.Location).Include(t => t.Staff).Where(t => t.StaffId == id);
-            return View(await timesheetDbContext.ToListAsync());
+            var timesheetDbContext = _context.Timesheets.Include(t => t.Client).Include(t => t.Location).Include(t => t.Staff);
+            return View("Index", await timesheetDbContext.ToListAsync());
         }
 
-       // public async Task<IActionResult> StaffIndex(int? id)
-        //{
-            //var timesheetDbContext = _context.Timesheets.Include(t => t.Client).Include(t => t.Location).Include(t => t.Staff).Where(t => t.StaffId == id);
-            //return View(await timesheetDbContext.ToListAsync());
-        //}
+        public async Task<IActionResult> StaffIndex(int? id)
+        {
+            var timesheetDbContext = _context.Timesheets.Include(t => t.Client).Include(t => t.Location).Include(t => t.Staff).Where(t => t.StaffId == id);
+            return View("Index", await timesheetDbContext.ToListAsync());
+        }
+
+        public async Task<IActionResult> ClientIndex(int? id)
+        {
+            var timesheetDbContext = _context.Timesheets.Include(t => t.Client).Include(t => t.Location).Include(t => t.Staff).Where(t => t.ClientId == id);
+            return View("Index", await timesheetDbContext.ToListAsync());
+        }
 
         // GET: Timesheet/Details/5
         public async Task<IActionResult> Details(int? id)
