@@ -37,6 +37,12 @@ namespace RebootIT.TimesheetApp.Controllers
             return View("Index", await timesheetDbContext.ToListAsync());
         }
 
+        public async Task<IActionResult> LocationIndex(int? id)
+        {
+            var timesheetDbContext = _context.Timesheets.Include(t => t.Client).Include(t => t.Location).Include(t => t.Staff).Where(t => t.LocationId == id);
+            return View("Index", await timesheetDbContext.ToListAsync());
+        }
+
         // GET: Timesheet/Details/5
         public async Task<IActionResult> Details(int? id)
         {
