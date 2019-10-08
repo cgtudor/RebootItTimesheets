@@ -49,8 +49,8 @@ namespace RebootIT.TimesheetApp.Controllers
         // GET: Timesheet/Create
         public IActionResult Create()
         {
-            ViewData["ClientId"] = new SelectList(_context.Clients, "Id", "BillingAddress");
-            ViewData["LocationId"] = new SelectList(_context.Locations, "Id", "Address");
+            ViewData["ClientId"] = new SelectList(_context.Clients, "Id", "CompanyName");
+            ViewData["LocationId"] = new SelectList(_context.Locations, "Id", "Name");
             ViewData["StaffId"] = new SelectList(_context.Staff, "Id", "Email");
             return View();
         }
@@ -68,8 +68,8 @@ namespace RebootIT.TimesheetApp.Controllers
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
-            ViewData["ClientId"] = new SelectList(_context.Clients, "Id", "BillingAddress", timesheet.ClientId);
-            ViewData["LocationId"] = new SelectList(_context.Locations, "Id", "Address", timesheet.LocationId);
+            ViewData["ClientId"] = new SelectList(_context.Clients, "Id", "CompanyName", timesheet.ClientId);
+            ViewData["LocationId"] = new SelectList(_context.Locations, "Id", "Name", timesheet.LocationId);
             ViewData["StaffId"] = new SelectList(_context.Staff, "Id", "Email", timesheet.StaffId);
             return View(timesheet);
         }
@@ -87,8 +87,8 @@ namespace RebootIT.TimesheetApp.Controllers
             {
                 return NotFound();
             }
-            ViewData["ClientId"] = new SelectList(_context.Clients, "Id", "BillingAddress", timesheet.ClientId);
-            ViewData["LocationId"] = new SelectList(_context.Locations, "Id", "Address", timesheet.LocationId);
+            ViewData["ClientId"] = new SelectList(_context.Clients, "Id", "CompanyName", timesheet.ClientId);
+            ViewData["LocationId"] = new SelectList(_context.Locations, "Id", "Name", timesheet.LocationId);
             ViewData["StaffId"] = new SelectList(_context.Staff, "Id", "Email", timesheet.StaffId);
             return View(timesheet);
         }
@@ -125,8 +125,8 @@ namespace RebootIT.TimesheetApp.Controllers
                 }
                 return RedirectToAction(nameof(Index));
             }
-            ViewData["ClientId"] = new SelectList(_context.Clients, "Id", "BillingAddress", timesheet.ClientId);
-            ViewData["LocationId"] = new SelectList(_context.Locations, "Id", "Address", timesheet.LocationId);
+            ViewData["ClientId"] = new SelectList(_context.Clients, "Id", "CompanyName", timesheet.ClientId);
+            ViewData["LocationId"] = new SelectList(_context.Locations, "Id", "Name", timesheet.LocationId);
             ViewData["StaffId"] = new SelectList(_context.Staff, "Id", "Email", timesheet.StaffId);
             return View(timesheet);
         }
