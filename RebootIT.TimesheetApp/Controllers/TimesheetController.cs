@@ -28,6 +28,7 @@ namespace RebootIT.TimesheetApp.Controllers
         public async Task<IActionResult> StaffIndex(int? id)
         {
             var timesheetDbContext = _context.Timesheets.Include(t => t.Client).Include(t => t.Location).Include(t => t.Staff).Where(t => t.StaffId == id);
+            ViewBag.Message = id;
             return View("StaffIndex", await timesheetDbContext.ToListAsync());
         }
 
