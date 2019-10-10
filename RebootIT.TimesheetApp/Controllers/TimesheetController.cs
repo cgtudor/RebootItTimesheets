@@ -74,6 +74,16 @@ namespace RebootIT.TimesheetApp.Controllers
             return View();
         }
 
+        public IActionResult CreateStaff(int? id)
+        {
+            int staffId = id.HasValue ? (int)id : 0;
+
+            ViewData["ClientId"] = new SelectList(_context.Clients, "Id", "CompanyName");
+            ViewData["LocationId"] = new SelectList(_context.Locations, "Id", "Name");
+            ViewData["StaffId"] = new SelectList(_context.Staff, "Id", "Forename");
+            return View("Create", new Timesheet() { StaffId = staffId });
+        }
+
         // POST: Timesheet/Create
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
