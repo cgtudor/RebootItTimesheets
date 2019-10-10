@@ -63,7 +63,7 @@ namespace RebootIT.TimesheetApp.Controllers
             {
                 return NotFound();
             }
-
+            //ViewData["StaffId"] = _context.Timesheets.FirstOrDefault(t => t.StaffId == id);
             return View(timesheet);
         }
 
@@ -72,7 +72,7 @@ namespace RebootIT.TimesheetApp.Controllers
         {
             ViewData["ClientId"] = new SelectList(_context.Clients, "Id", "CompanyName");
             ViewData["LocationId"] = new SelectList(_context.Locations, "Id", "Name");
-            ViewData["StaffId"] = new SelectList(_context.Staff, "Id", "Forename");
+            ViewData["StaffId"] = new SelectList(_context.Staff, "Id", "Fullname");
             return View();
         }
 
@@ -82,7 +82,7 @@ namespace RebootIT.TimesheetApp.Controllers
 
             ViewData["ClientId"] = new SelectList(_context.Clients, "Id", "CompanyName");
             ViewData["LocationId"] = new SelectList(_context.Locations, "Id", "Name");
-            ViewData["StaffId"] = new SelectList(_context.Staff, "Id", "Forename");
+            ViewData["StaffId"] = new SelectList(_context.Staff, "Id", "Fullname");
             return View("Create", new Timesheet() { StaffId = staffId });
         }
 
@@ -92,7 +92,7 @@ namespace RebootIT.TimesheetApp.Controllers
 
             ViewData["ClientId"] = new SelectList(_context.Clients, "Id", "CompanyName");
             ViewData["LocationId"] = new SelectList(_context.Locations, "Id", "Name");
-            ViewData["StaffId"] = new SelectList(_context.Staff, "Id", "Forename");
+            ViewData["StaffId"] = new SelectList(_context.Staff, "Id", "Fullname");
             return View("Create", new Timesheet() { ClientId = clientId });
         }
 
@@ -102,7 +102,7 @@ namespace RebootIT.TimesheetApp.Controllers
 
             ViewData["ClientId"] = new SelectList(_context.Clients, "Id", "CompanyName");
             ViewData["LocationId"] = new SelectList(_context.Locations, "Id", "Name");
-            ViewData["StaffId"] = new SelectList(_context.Staff, "Id", "Forename");
+            ViewData["StaffId"] = new SelectList(_context.Staff, "Id", "Fullname");
             return View("Create", new Timesheet() { LocationId = locationId });
         }
 
@@ -121,7 +121,7 @@ namespace RebootIT.TimesheetApp.Controllers
             }
             ViewData["ClientId"] = new SelectList(_context.Clients, "Id", "CompanyName", timesheet.ClientId);
             ViewData["LocationId"] = new SelectList(_context.Locations, "Id", "Name", timesheet.LocationId);
-            ViewData["StaffId"] = new SelectList(_context.Staff, "Id", "Forename", timesheet.StaffId);
+            ViewData["StaffId"] = new SelectList(_context.Staff, "Id", "Fullname", timesheet.StaffId);
             return View(timesheet);
         }
 
@@ -140,7 +140,7 @@ namespace RebootIT.TimesheetApp.Controllers
             }
             ViewData["ClientId"] = new SelectList(_context.Clients, "Id", "CompanyName", timesheet.ClientId);
             ViewData["LocationId"] = new SelectList(_context.Locations, "Id", "Name", timesheet.LocationId);
-            ViewData["StaffId"] = new SelectList(_context.Staff, "Id", "Forename", timesheet.StaffId);
+            ViewData["StaffId"] = new SelectList(_context.Staff, "Id", "Fullname", timesheet.StaffId);
             return View(timesheet);
         }
 
@@ -178,7 +178,7 @@ namespace RebootIT.TimesheetApp.Controllers
             }
             ViewData["ClientId"] = new SelectList(_context.Clients, "Id", "CompanyName", timesheet.ClientId);
             ViewData["LocationId"] = new SelectList(_context.Locations, "Id", "Name", timesheet.LocationId);
-            ViewData["StaffId"] = new SelectList(_context.Staff, "Id", "Forename", timesheet.StaffId);
+            ViewData["StaffId"] = new SelectList(_context.Staff, "Id", "Fullname", timesheet.StaffId);
             return View(timesheet);
         }
 
