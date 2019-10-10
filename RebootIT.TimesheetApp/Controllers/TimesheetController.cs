@@ -35,13 +35,15 @@ namespace RebootIT.TimesheetApp.Controllers
         public async Task<IActionResult> ClientIndex(int? id)
         {
             var timesheetDbContext = _context.Timesheets.Include(t => t.Client).Include(t => t.Location).Include(t => t.Staff).Where(t => t.ClientId == id);
-            return View("Index", await timesheetDbContext.ToListAsync());
+            ViewBag.Message = id;
+            return View("ClientIndex", await timesheetDbContext.ToListAsync());
         }
 
         public async Task<IActionResult> LocationIndex(int? id)
         {
             var timesheetDbContext = _context.Timesheets.Include(t => t.Client).Include(t => t.Location).Include(t => t.Staff).Where(t => t.LocationId == id);
-            return View("Index", await timesheetDbContext.ToListAsync());
+            ViewBag.Message = id;
+            return View("LocationIndex", await timesheetDbContext.ToListAsync());
         }
 
         // GET: Timesheet/Details/5
@@ -82,6 +84,26 @@ namespace RebootIT.TimesheetApp.Controllers
             ViewData["LocationId"] = new SelectList(_context.Locations, "Id", "Name");
             ViewData["StaffId"] = new SelectList(_context.Staff, "Id", "Forename");
             return View("Create", new Timesheet() { StaffId = staffId });
+        }
+
+        public IActionResult CreateClient(int? id)
+        {
+            int clientId = id.HasValue ? (int)id : 0;
+
+            ViewData["ClientId"] = new SelectList(_context.Clients, "Id", "CompanyName");
+            ViewData["LocationId"] = new SelectList(_context.Locations, "Id", "Name");
+            ViewData["StaffId"] = new SelectList(_context.Staff, "Id", "Forename");
+            return View("Create", new Timesheet() { ClientId = clientId });
+        }
+
+        public IActionResult CreateLocation(int? id)
+        {
+            int locationId = id.HasValue ? (int)id : 0;
+
+            ViewData["ClientId"] = new SelectList(_context.Clients, "Id", "CompanyName");
+            ViewData["LocationId"] = new SelectList(_context.Locations, "Id", "Name");
+            ViewData["StaffId"] = new SelectList(_context.Staff, "Id", "Forename");
+            return View("Create", new Timesheet() { LocationId = locationId });
         }
 
         // POST: Timesheet/Create
