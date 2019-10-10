@@ -63,7 +63,6 @@ namespace RebootIT.TimesheetApp.Controllers
             {
                 return NotFound();
             }
-            //ViewData["StaffId"] = _context.Timesheets.FirstOrDefault(t => t.StaffId == id);
             return View(timesheet);
         }
 
